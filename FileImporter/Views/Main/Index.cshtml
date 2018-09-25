@@ -1,0 +1,42 @@
+﻿
+@{
+	ViewBag.Title = "title";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Import file</h2>
+
+<table>
+	<tr>
+		<td width="50%">
+			<b>Please select txt file for import:</b>
+		</td>
+		<td>
+			<input id="file-to-import" type="file" size="100" />
+		</td>
+	</tr>
+</table>
+
+<br />
+
+<input type="text" id ="occurence-text" name="fname"><br>
+
+<div>
+	<input id="save-btn" type="submit" value="Save" style="background-color: #003C64; color: #ffffff; border: 1px solid transparent; border-radius: 4px; padding: 5px 10px; font-size: 14px; font-weight: bold;" />
+</div>
+
+@section Scripts{
+	<script>
+		$('#save-btn').click(function() {
+
+			var input = document.getElementById("occurence-text");
+			var inputText = input.value;
+
+			$.ajax({
+				url: "Main/Save",
+				type: "POST",
+				data: { "inputText": inputText}
+			});
+		});
+	</script>
+}
